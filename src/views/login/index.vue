@@ -3,7 +3,7 @@
     <div class="card">
       <div class="top">
         <img src="/src/static/animal01.png" width="86">
-        <div class="font">AntDesignAdmin</div>
+        <div class="font">AdminManage</div>
       </div>
       <a-card style="width: 400px">
         <a-form
