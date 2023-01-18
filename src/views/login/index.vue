@@ -58,7 +58,7 @@ import {onBeforeUnmount, onMounted, reactive, ref} from "vue"
 import SIdentify from '@/views/utils/identify.vue'
 import type {Rule} from "ant-design-vue/es/form"
 import * as THREE from 'three'
-import CLOUDS from 'vanta/src/vanta.cells'
+import CLOUDS from 'vanta/src/vanta.waves'
 
 // 图形验证码
 let identifyCodes = "1234567890"
