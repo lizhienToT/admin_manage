@@ -1,5 +1,5 @@
 <template>
-  <div class="t1">
+  <div class="t1" ref="vantaRef">
     <div class="card">
       <div class="top">
         <img src="/src/static/animal01.png" width="86">
@@ -54,9 +54,12 @@
   </div>
 </template>
 <script lang="ts" setup name="index">
-import {onMounted, reactive, ref} from "vue"
+import {onBeforeUnmount, onMounted, reactive, ref} from "vue"
 import SIdentify from '@/views/utils/identify.vue'
-import type {Rule} from "ant-design-vue/es/form";
+import type {Rule} from "ant-design-vue/es/form"
+import * as THREE from 'three'
+import CLOUDS from 'vanta/src/vanta.cells'
+
 // 图形验证码
 let identifyCodes = "1234567890"
 let identifyCode = ref('3212')
@@ -67,7 +70,7 @@ interface FormState {
   verificationCode: string;
   remember: boolean;
 }
-
+const vantaRef=ref(null)
 const disabled = ref(false)
 const labelCol = {style: {width: '70px'}}
 const wrapperCol = {span: 18}
@@ -121,9 +124,19 @@ const handleValidate = (...args: any[]) => {
   console.log(args);
   console.log(3)
 }
+let vantaEffect=null
 onMounted(() => {
   identifyCode.value = "";
   makeCode(identifyCodes, 4);
+  vantaEffect = CLOUDS({
+    el: vantaRef.value,
+    THREE: THREE,
+  })
+})
+onBeforeUnmount(()=>{
+    if(vantaEffect){
+        vantaEffect.destroy()
+    }
 })
 </script>
 <style lang="less" scoped>
